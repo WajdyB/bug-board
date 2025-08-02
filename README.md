@@ -79,21 +79,44 @@ The application uses three main models:
 bug-board/
 ├── app/                    # Next.js App Router
 │   ├── api/               # API routes
-│   ├── idea/[id]/         # Idea detail pages
+│   │   ├── comments/      # Comment endpoints
+│   │   ├── ideas/         # Idea endpoints
+│   │   │   └── [id]/      # Individual idea endpoints
+│   │   └── votes/         # Vote endpoints
+│   ├── idea/              # Idea pages
+│   │   └── [id]/          # Individual idea detail page
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout
 │   └── page.tsx           # Home page
 ├── components/            # React components
+│   ├── ui/               # shadcn/ui components
+│   ├── comment-section.tsx
+│   ├── filters.tsx
 │   ├── header.tsx
 │   ├── idea-card.tsx
 │   ├── submit-form.tsx
-│   ├── comment-section.tsx
-│   └── filters.tsx
-├── lib/                   # Utilities
+│   └── theme-provider.tsx
+├── hooks/                # Custom React hooks
+│   ├── use-mobile.tsx
+│   └── use-toast.ts
+├── lib/                  # Utilities
+│   ├── hooks.ts          # Custom React hooks
 │   ├── prisma.ts         # Database client
 │   ├── uuid.ts           # Anonymous user management
-│   ├── validations.ts    # Zod schemas
-│   └── hooks.ts          # Custom React hooks
+│   ├── utils.ts          # Utility functions
+│   └── validations.ts    # Zod schemas
 ├── prisma/               # Database schema
-└── scripts/              # Database scripts
+│   ├── schema.prisma     # Prisma schema
+│   └── seed.ts           # Database seeding script
+├── scripts/              # Database scripts
+│   └── seed-database.sql # SQL seeding script
+├── styles/               # Additional styles
+│   └── globals.css
+├── public/               # Static assets
+├── .env                  # Environment variables
+├── package.json          # Dependencies and scripts
+├── tailwind.config.ts    # Tailwind configuration
+└── tsconfig.json         # TypeScript configuration
 \`\`\`
 
 ## API Endpoints
