@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Idea {
+  id          String    @id @default(uuid())
+  title       String
+  description String
+  tags        String[]
+  createdAt   DateTime  @default(now())
+  votes       Vote[]
+  comments    Comment[]
+
+  @@map("ideas")
+}
+
+model Vote {
+  id        String   @id @default(uuid())
+  userId    String
+  ideaId    String
+  idea      Idea     @relation(fields: [ideaId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, ideaId])
+  @@map("votes")
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  userId    String
+  ideaId    String
+  idea      Idea     @relation(fields: [ideaId], references: [id], onDelete: Cascade)
+  content   String
+  createdAt DateTime @default(now())
+
+  @@map("comments")
+}
