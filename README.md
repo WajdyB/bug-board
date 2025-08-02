@@ -65,6 +65,28 @@ npm run dev
 
 Visit [http://localhost:3000](http://localhost:3000) to see the application.
 
+## Deployment
+
+### Vercel Deployment
+
+1. **Set up environment variables** in your Vercel project:
+   - `DATABASE_URL`: Your PostgreSQL connection string
+
+2. **Deploy to Vercel**:
+   ```bash
+   vercel --prod
+   ```
+
+The build process will automatically:
+- Generate the Prisma client
+- Build the Next.js application
+- Deploy to Vercel's edge network
+
+### Environment Variables for Production
+
+Make sure to set these in your Vercel project settings:
+- `DATABASE_URL`: Your production PostgreSQL database URL
+
 ## Database Schema
 
 The application uses three main models:
